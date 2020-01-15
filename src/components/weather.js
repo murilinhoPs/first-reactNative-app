@@ -36,7 +36,7 @@ const Weather = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f7b733"
+
   },
   headerContainer: {
     flex: 1,

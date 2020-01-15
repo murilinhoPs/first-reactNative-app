@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 
 import Weather from "./components/weather";
 import API_KEY from "./utils/weather_api";
-import { fetchUpdateAsync } from "expo/build/Updates/Updates";
 
 const MyApp = () => {
   const [state, setState] = useState({
@@ -17,7 +16,7 @@ const MyApp = () => {
     weatherType: null
   });
 
-  //api.openweathermap.org/data/2.5/weather?lat={-23.55}&lon={46.66}&appid={089c0dcede396e798522314f28283861}&units=metric
+  //api.openweathermap.org/data/2.5/weather?lat={-23.55}&lon={46.66}&appid={API_KEY}&units=metric
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
@@ -31,7 +30,8 @@ const MyApp = () => {
         });
       }
     );
-  }, []);
+   console.log('useEffect()');
+  });
 
   const fetchApi = (latitude, longitude) => {
     fetch(
@@ -46,13 +46,14 @@ const MyApp = () => {
       .then(response => response.json())
       .then(responseJson => {
         setState({
-          isLoading: false,
+          
           temperature: responseJson.main.temp,
           minTemperature: responseJson.main.temp_min,
           maxTemperature: responseJson.main.temp_max,
           weatherCondition: responseJson.weather[0].description,
           weatherType: responseJson.weather[0].main,
-          name: responseJson.name
+          name: responseJson.name,
+          isLoading: false,
         });
         console.log(responseJson);
       })

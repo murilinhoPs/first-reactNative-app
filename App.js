@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
 import MyApp from "./src/mainPage";
+import DiscordApp from './src/discord_app';
+import DiscordEmbed from './src/discord_embed';
 
 export default class App extends React.Component {
   render() {
