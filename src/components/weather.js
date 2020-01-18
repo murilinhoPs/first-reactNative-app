@@ -35,6 +35,7 @@ const Weather = props => {
             color={"#fff"}
           />
           <Text style={styles.tempText}>{props.temperature}˚C</Text>
+          
         </View>
       </View>
       <View style={styles.bodyContainer}>
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 60
+    marginTop: 60,
+    marginBottom:60
   },
   tempText: {
     fontSize: 70,

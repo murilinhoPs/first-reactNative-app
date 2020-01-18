@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+
 import Weather from "./components/weather";
 import API_KEY from "./utils/weather_api";
 
 const MyApp = () => {
+
   const [state, setState] = useState({
     isLoading: true,
     temperature: 0,
@@ -78,6 +80,7 @@ const MyApp = () => {
       {isLoading ? (
         <Text>fetching data....</Text>
       ) : (
+        
         <Weather
           weather={weatherCondition}
           temperature={temperature}
