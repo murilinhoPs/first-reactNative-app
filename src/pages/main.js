@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import Weather from "./components/weather";
-import API_KEY from "./utils/weather_api";
+import Weather from "./wheatherPage/weather";
+import API_KEY from "../utils/weather_api";
 
 const MyApp = () => {
   const [state, setState] = useState({
@@ -16,8 +16,6 @@ const MyApp = () => {
     weatherType: null
   });
 
-  //api.openweathermap.org/data/2.5/weather?lat={-23.55}&lon={46.66}&appid={API_KEY}&units=metric
-
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -30,7 +28,7 @@ const MyApp = () => {
         });
       }
     );
-   console.log('useEffect()');
+    console.log("useEffect()");
   });
 
   const fetchApi = (latitude, longitude) => {
@@ -46,45 +44,35 @@ const MyApp = () => {
       .then(response => response.json())
       .then(responseJson => {
         setState({
-          
           temperature: responseJson.main.temp,
           minTemperature: responseJson.main.temp_min,
           maxTemperature: responseJson.main.temp_max,
           weatherCondition: responseJson.weather[0].description,
           weatherType: responseJson.weather[0].main,
           name: responseJson.name,
-          isLoading: false,
+          isLoading: false
         });
         console.log(responseJson);
       })
       .catch(error => {
         console.error(error);
       });
-    // let responseJson = response.json;
-    // console.log(responseJson);
   };
 
-  const {
-    isLoading,
-    weatherCondition,
-    weatherType,
-    temperature,
-    minTemperature,
-    maxTemperature,
-    name
-  } = state;
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <Text>fetching data....</Text>
+      {state.isLoading ? (
+        <View style={{ alignContent: "center" }}>
+          <Text>fetching data....</Text>
+        </View>
       ) : (
         <Weather
-          weather={weatherCondition}
-          temperature={temperature}
-          minTemp={minTemperature}
-          maxTemp={maxTemperature}
-          lugar={name}
-          weatherType={weatherType}
+          weather={state.weatherCondition}
+          temperature={state.temperature}
+          minTemp={state.minTemperature}
+          maxTemp={state.maxTemperature}
+          lugar={state.name}
+          weatherType={state.weatherType}
         />
       )}
     </View>
