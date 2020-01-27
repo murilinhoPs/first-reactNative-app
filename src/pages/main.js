@@ -73,7 +73,7 @@ const MyApp = () => {
         </View>
       ) : (
         <ImageBackground
-          source={state.time < 18 ? dayImage : nightImage}
+          source={state.time < 18 && state.time < 5 ? dayImage : nightImage}
           style={{ width: "100%", height: "100%" }}
         >
           <Weather

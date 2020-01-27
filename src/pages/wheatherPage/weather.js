@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ListView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import weatherConditions from "../../utils/weather_info";
@@ -9,13 +9,9 @@ const Weather = props => {
   const HeaderComponent = () => (
     <View style={styles.headerContainer}>
       <Text style={styles.tempText}>{props.temperature}˚</Text>
-      <View style={styles.headerTempIcon}>
-        <MaterialCommunityIcons
-          size={50}
-          name={weatherConditions[props.weatherType].icon}
-          color={weatherConditions[props.weatherType].color}
-        />
 
+      <View style={styles.headerTempIcon}>
+        <Text style={styles.bodytitle}>{props.weather}</Text>
         <Text style={styles.placeText}>{props.lugar}</Text>
       </View>
     </View>
@@ -23,10 +19,16 @@ const Weather = props => {
 
   const BodyComponent = () => (
     <View style={styles.bodyContainer}>
-      <Text style={styles.bodytitle}>{props.weather}</Text>
-      <Text style={styles.bodysubtitle}>
-        mínima: {props.minTemp} máxima: {props.maxTemp}
-      </Text>
+      <View style={styles.bodyRow}>
+        <MaterialCommunityIcons
+          size={40}
+          name={weatherConditions[props.weatherType].icon}
+          color={weatherConditions[props.weatherType].color}
+        />
+        <Text style={styles.bodysubtitle}>
+          Hoje: min: {props.minTemp} máx: {props.maxTemp}
+        </Text>
+      </View>
     </View>
   );
 

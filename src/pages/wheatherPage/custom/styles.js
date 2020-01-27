@@ -19,37 +19,40 @@ const styles = StyleSheet.create({
   },
   headerTempIcon: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "column",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
-    marginLeft: 20,
-    marginTop: 30
+    marginLeft: 20
   },
   tempText: {
-    fontSize: 80,
+    fontSize: 70,
     color: "#fff",
     marginLeft: 27
   },
   placeText: {
-    fontSize: 45,
+    fontSize: 22,
     color: "#fff"
   },
+
   bodyContainer: {
     flex: 1,
-
     alignItems: "flex-start", // na esquerda, onde constroi o component
     justifyContent: "flex-end", // colocar no final da tela
     paddingLeft: 20,
     marginBottom: 40
   },
+  bodyRow: {
+    flexDirection: "row"
+  },
   bodytitle: {
-    fontSize: 42,
+    fontSize: 36,
     color: "#fff"
   },
   bodysubtitle: {
     fontSize: 20,
-    color: "#fff"
+    color: "#fff",
+    marginTop: 7
   }
 });
 
