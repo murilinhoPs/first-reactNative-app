@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
 
 import Weather from "./wheatherPage/weather";
 import API_KEY from "../utils/weather_api";
+import dayImage from "../../assets/myDay.jpg";
+import nightImage from "../../assets/myNight.jpg";
 
 const MyApp = () => {
   const [state, setState] = useState({
@@ -13,7 +15,8 @@ const MyApp = () => {
     maxTemperature: 0,
     minTemperature: 0,
     name: "",
-    weatherType: null
+    weatherType: null,
+    time: null
   });
 
   useEffect(() => {
@@ -28,10 +31,12 @@ const MyApp = () => {
         });
       }
     );
-    console.log("useEffect()");
+
+    //console.log("useEffect()");
   });
 
   const fetchApi = (latitude, longitude) => {
+    var hours = new Date().getHours();
     fetch(
       "http://api.openweathermap.org/data/2.5/weather?lat=" +
         latitude +
@@ -50,7 +55,8 @@ const MyApp = () => {
           weatherCondition: responseJson.weather[0].description,
           weatherType: responseJson.weather[0].main,
           name: responseJson.name,
-          isLoading: false
+          isLoading: false,
+          time: hours
         });
         console.log(responseJson);
       })
@@ -66,14 +72,19 @@ const MyApp = () => {
           <Text>fetching data....</Text>
         </View>
       ) : (
-        <Weather
-          weather={state.weatherCondition}
-          temperature={state.temperature}
-          minTemp={state.minTemperature}
-          maxTemp={state.maxTemperature}
-          lugar={state.name}
-          weatherType={state.weatherType}
-        />
+        <ImageBackground
+          source={state.time < 18 ? dayImage : nightImage}
+          style={{ width: "100%", height: "100%" }}
+        >
+          <Weather
+            weather={state.weatherCondition}
+            temperature={state.temperature.toFixed(0)}
+            minTemp={state.minTemperature}
+            maxTemp={state.maxTemperature}
+            lugar={state.name}
+            weatherType={state.weatherType}
+          />
+        </ImageBackground>
       )}
     </View>
   );
@@ -82,7 +93,7 @@ const MyApp = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    //backgroundColor: "#fff",
     justifyContent: "center"
   }
 });

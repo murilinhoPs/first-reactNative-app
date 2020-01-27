@@ -1,4 +1,4 @@
-create a file named: weathera_api.js and add the following code into the file:
+create a file named: weather_api.js and add the following code into the file:
 
 const API_KEY = "API_KEY from api.openweathermap.org";
 

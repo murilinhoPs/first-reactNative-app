@@ -8,14 +8,15 @@ import { styles } from "./custom/styles";
 const Weather = props => {
   const HeaderComponent = () => (
     <View style={styles.headerContainer}>
-      <Text style={styles.placeText}>{props.lugar}</Text>
+      <Text style={styles.tempText}>{props.temperature}˚</Text>
       <View style={styles.headerTempIcon}>
         <MaterialCommunityIcons
-          size={70}
+          size={50}
           name={weatherConditions[props.weatherType].icon}
-          color={"#fff"}
+          color={weatherConditions[props.weatherType].color}
         />
-        <Text style={styles.tempText}>{props.temperature}˚C</Text>
+
+        <Text style={styles.placeText}>{props.lugar}</Text>
       </View>
     </View>
   );
@@ -30,12 +31,7 @@ const Weather = props => {
   );
 
   return (
-    <View
-      style={[
-        styles.container,
-        { backgroundColor: weatherConditions[props.weatherType].color }
-      ]}
-    >
+    <View style={[styles.container]}>
       <HeaderComponent />
       <BodyComponent />
     </View>

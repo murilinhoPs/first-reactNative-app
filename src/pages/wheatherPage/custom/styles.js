@@ -5,26 +5,34 @@ const styles = StyleSheet.create({
     flex: 1
   },
   headerContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40
+    flex: 0.6,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    marginLeft: 10,
+    marginTop: 50
+    // backgroundColor: "rgba(255, 255, 255, 0.2)",
+    // width: 150,
+    // borderRadius: 10,
+    // elevation: 1,
+    // shadowRadius: 10
   },
   headerTempIcon: {
     flex: 1,
     flexDirection: "row",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 60
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    marginLeft: 20,
+    marginTop: 30
   },
   tempText: {
-    fontSize: 70,
+    fontSize: 80,
     color: "#fff",
-    marginLeft: 20
+    marginLeft: 27
   },
   placeText: {
-    fontSize: 50,
+    fontSize: 45,
     color: "#fff"
   },
   bodyContainer: {
